@@ -111,5 +111,5 @@ class WSELoss(nn.Module):
         self.register_buffer('weights', torch.tensor(weights).unsqueeze(1))
 
     def forward(self, y, y_pred):
-        y = F.mse_loss(y, y_pred, reduce=False)
+        y = F.mse_loss(y, y_pred, reduction='none')
         return torch.mm(y, self.weights).mean()
